@@ -1,30 +1,49 @@
-﻿<#GLOBAL VARIABLES#>
+﻿
 $scriptloop = $true
-$creds = Get-Credential
-<#END GLOBAL VARIABLES#>
+#$AccountCredentials = Get-Credential
+
+
 
 
 <#This part of the script forces a loop and asks the user what they want to do#>
 While ($scriptloop -EQ $true) {
        
        Write-Output "`n`n"
-       Write-Host -ForegroundColor Green "Menu"
-       Write-Host -ForegroundColor Yellow "1. Get the Network Adapter Information `n2. Get the Processes on the machine `n3. Fix Printer Issues and Stuck Jobs `n4. Manage Services `n5. Get Monitor Serial Number `n6. Log a user off `n7. Uninstall Citrix `n8. RDP Into a Machine `n0. EXIT"
+       
+
+       
+       
+       Write-Host -ForegroundColor Green "`t   Menu" -NoNewline
+       Write-Host -ForegroundColor Cyan "    $ComputerName" 
+       Write-Host -ForegroundColor Yellow "
+       1. Get the Network Adapter Information 
+       2. Get the Processes on the machine 
+       3. Fix Printer Issues and Stuck Jobs 
+       4. Manage Services 
+       5. Get Monitor Serial Number 
+       6. Log a user off 
+       7. Uninstall Citrix 
+       8. RDP Into a Machine
+       9. Imprivata Policy change reminder
+       C. To change the computer name 
+       0. EXIT
+       "
+
        $userInput = Read-Host -Prompt "Enter an option"
 
-If($userInput -eq 1){& "$PSScriptRoot\gnetAdapterNFO.ps1"}
-ElseIf($userInput -eq 2){$hosts = Read-Host -Prompt "`nEnter the computer name"
-& "$PSScriptRoot\gProcessNFO.ps1"}
-ElseIf($userInput -eq 3){$hosts = Read-Host -Prompt "`nEnter the computer name"
-killPrinters}
-ElseIf($userInput -eq 4){$hosts = Read-Host -Prompt "`nEnter the computer name"
-& "$PSScriptRoot\KOSServices.ps1"}
-ElseIf($userInput -eq 5){$Computers = Read-Host -Prompt "`nEnter the computer name" 
-$Path = Read-Host -Prompt "`nEnter the Path you want"
-& "$PSScriptRoot\GetMonitorSerial" $Computers $Path}
-ElseIf($userInput -eq 6) {& "$PSScriptRoot\loguseroff.ps1"}
-ElseIf($userInput -eq 7) {& "$PSScriptRoot\UninstallCitrix.ps1"}
-ElseIf($userInput -eq 8) {& "$PSScriptRoot\RDPN.ps1"}
+If($userInput -eq 1){& "$PSScriptRoot\Get-NetworkInfo.ps1" $ComputerName}
+
+ElseIf($userInput -eq 2){& "$PSScriptRoot\Get-ProcessInfo.ps1" $ComputerName}
+
+ElseIf($userInput -eq 3){& "$PSScriptRoot\Invoke-RepairPrinter.ps1" $ComputerName}
+ElseIf($userInput -eq 4){& "$PSScriptRoot\Get-Services.ps1" $ComputerName}
+ElseIf($userInput -eq 5){& "$PSScriptRoot\Get-MonitorSerial" $ComputerName}
+ElseIf($userInput -eq 6) {& "$PSScriptRoot\Invoke-Logoff.ps1" $ComputerName}
+ElseIf($userInput -eq 7) {& "$PSScriptRoot\Invoke-RemoveCitrix.ps1"}
+ElseIf($userInput -eq 8) {& "$PSScriptRoot\Invoke-RemoteDesktop.ps1" $ComputerName}
+ElseIf($userInput -eq 9) {$getEmail = Read-Host "What is the username the email will be sent to?" 
+& "$PSScriptRoot\Get-ImprivataReminder.ps1" $ComputerName $getEmail}
+ElseIf($userInput -eq "C"){$ComputerName = Read-Host "Enter the Computer name"}
 ElseIf($userInput -eq 0){$scriptloop = $false}
 Else{Write-Output "`nEnter a valid number"}
 }

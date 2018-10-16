@@ -13,8 +13,9 @@ $Department,
 
 )
 
+$MainPath = "C:\Users\mrahlfs1\OneDrive - Mercy Online"
 
-If(!(Test-Path -Path "$ENV:USERPROFILE\IMGM")){New-Item -Path "$ENV:USERPROFILE" -ItemType Directory -Name IMGM}
+If(!(Test-Path -Path "$MainPath\IMGM")){New-Item -Path "$MainPath" -ItemType Directory -Name IMGM}
 
 #make sure there is a folder for each floor and department and hallway
 
@@ -25,28 +26,28 @@ If(!(Test-Path -Path "$ENV:USERPROFILE\IMGM")){New-Item -Path "$ENV:USERPROFILE"
 
 for($i=2; $i -le 6; $i++){
 
-If(!(Test-Path -Path "$ENV:USERPROFILE\IMGM\Floor $i")){
+If(!(Test-Path -Path "$MainPath\IMGM\Floor $i")){
 
-New-Item -Path "$ENV:USERPROFILE\IMGM\" -Name "Floor $i" -ItemType Directory
+New-Item -Path "$MainPath\IMGM\" -Name "Floor $i" -ItemType Directory
 }
 
 }
 
 
-If(!(Test-Path -Path "$ENV:USERPROFILE\IMGM\Floor $Floor\Hallway $Hall")){
+If(!(Test-Path -Path "$MainPath\IMGM\Floor $Floor\Hallway $Hall")){
 
-New-Item -Path "$ENV:USERPROFILE\IMGM\Floor $Floor" -Name "Hallway $Hall" -ItemType Directory
+New-Item -Path "$MainPath\IMGM\Floor $Floor" -Name "Hallway $Hall" -ItemType Directory
 
 
 }
 
 
 
-If(!(Test-Path -Path "$ENV:USERPROFILE\IMGM\Floor $Floor\Hallway $Hall\Room $Room")){
+If(!(Test-Path -Path "$MainPath\IMGM\Floor $Floor\Hallway $Hall\Room $Room")){
 
 
 
- $null | Out-File -FilePath "$ENV:USERPROFILE\IMGM\Floor $Floor\Hallway $Hall\$Room.txt" 
+ $null | Out-File -FilePath "$MainPath\IMGM\Floor $Floor\Hallway $Hall\$Room.txt" 
 
 }
 
@@ -59,7 +60,7 @@ ElseIf((Test-Path -Path "C:\Users\mrahlfs1\Desktop\IMGM.txt")){(Get-Content -Pat
 }
 
 }
-ElseIF($Assets -ne $null){$Assets | Out-File "$ENV:USERPROFILE\IMGM\Floor $Floor\Hallway $Hall\$Room.txt"}
+ElseIF($Assets -ne $null){$Assets | Out-File "$MainPath\IMGM\Floor $Floor\Hallway $Hall\$Room.txt"}
 
 
 
