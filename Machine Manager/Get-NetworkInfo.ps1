@@ -8,7 +8,7 @@ $ComputerName
 
 Try{
 
-    if(& "$PSScriptRoot\itmo.ps1" $ComputerName){
+    if(& "$PSScriptRoot\Get-MachineConnection.ps1" $ComputerName){
 
         Invoke-Command -ComputerName $ComputerName -ScriptBlock {
 
@@ -37,4 +37,5 @@ Try{
 
 
 }
-Catch{Write-Output "Something Failed"}
+Catch{$_.Exception.Message
+      Write-Output "Something Failed"}

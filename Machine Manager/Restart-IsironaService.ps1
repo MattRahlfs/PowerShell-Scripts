@@ -5,7 +5,7 @@ $ComputerName
 )
 
 
-if (& "$psscriptroot\itmo.ps1" $ComputerName){
+if (& "$psscriptroot\Get-MachineConnection.ps1" $ComputerName){
 
 Try {
 

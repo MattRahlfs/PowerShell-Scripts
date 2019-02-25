@@ -1,14 +1,15 @@
 ﻿$computername = Read-Host "whats the computer name"
 
-$remosesh = New-PSSession -ComputerName $computername
 
 
 copy -path "C:\CitrixReceiver.exe" -Destination "\\$computername\c$\" -Force
 Write-Host "copied the exe"
 
+Write-Output "Starting to sleep for 3 seconds"
 Start-Sleep -Seconds 3
 
-invoke-command -Session $remosesh -ScriptBlock {
+Write-Output "Starting to invoke the exe with the arguments silent uninstall"
+invoke-command -ComputerName $computername -ScriptBlock {
 
 Start-Process -FilePath "C:\CitrixReceiver.exe" -ArgumentList "/silent /uninstall" 
 
@@ -22,12 +23,12 @@ Remove-Item -Path "\\$computername\C$\CitrixReceiver.exe" -Force
 
 Write-Host "removed the exe"
 
-Invoke-Command -Session $remosesh -ScriptBlock {
+Invoke-Command -ComputerName $computername -ScriptBlock {
 
 Get-WmiObject Win32_product | where name -like "Citrix*" | select name
 }
 
-Remove-PSSession -ComputerName $computername
+
 
 #Restart-Computer -ComputerName $computername -Force
 

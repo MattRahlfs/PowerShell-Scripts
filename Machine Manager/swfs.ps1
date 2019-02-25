@@ -4,7 +4,9 @@ param (
 
 [string[]]$devices,
 
-$path
+$path,
+
+[switch]$C
 
 )
 
@@ -61,9 +63,9 @@ Set-Clipboard $serialNum
 
 
 
-if ($devices -ne $null){
+if ($C -ne $false){
 
-devices
+clipboard
 
 
 }
@@ -72,9 +74,9 @@ ElseIf($path -ne $null){
 path
 
 }
-ElseIf(($devices -eq $null) -and ($path -eq $null)){
+ElseIf($devices -ne $null){
 
-clipboard
+devices
 
 }
 

@@ -12,14 +12,24 @@ While($loop -EQ $true){
 Try{
     If(Test-Connection -ComputerName $ComputerName -Count 1 -TimeToLive 3 -Quiet){
 
-       Write-Host -ForegroundColor Green "Menu"
-       Write-Host -ForegroundColor Yellow "1. List Services `n2. Kill Services `n3. Start Servcices `n4. Search for services`n0. EXIT"
+       Write-Host -ForegroundColor Green "`t   Menu" -NoNewline
+       Write-Host -ForegroundColor Cyan "    $ComputerName" 
+       Write-Host -ForegroundColor Yellow "
+       1. List Services 
+       2. Kill Services 
+       3. Start Servcices 
+       4. Search for services
+       0. EXIT
+       `n"
+
        $userinput = Read-Host -Prompt "Enter an option"
 
         If($userinput -EQ 1){
 
            
-           $services = Get-Service -ComputerName $ComputerName | Where Status -EQ 'Running' |Select -ExpandProperty DisplayName
+           $services = Get-Service -ComputerName $ComputerName | 
+                        Where Status -EQ 'Running' |
+                            Select -ExpandProperty DisplayName
            $count = 0
 
            foreach($service in $services) {
@@ -31,7 +41,8 @@ Try{
            $services | Format-Wide {$_} -AutoSize -Force
 
 
-           $services = Get-Service -ComputerName $ComputerName | Where Status -EQ 'Stopped' |Select -ExpandProperty DisplayName
+           $services = Get-Service -ComputerName $ComputerName | Where Status -EQ 'Stopped' |
+                        Select -ExpandProperty DisplayName
            $count = 0
 
            foreach($service in $services) {
@@ -48,17 +59,26 @@ Try{
                 
                
                $userinput = Read-Host "Enter the service you want to kill"
-               Invoke-Command -ComputerName $ComputerName -ArgumentList $userinput -ScriptBlock{param($userinput) Stop-Service -DisplayName $userinput -Force}
+               Invoke-Command -ComputerName $ComputerName -ArgumentList $userinput -ScriptBlock{
+                param($userinput) Stop-Service -DisplayName $userinput -Force}
+
+
                 }
         ElseIf($userinput -EQ 3){
                 
                $userinput = Read-Host "Enter the service you want to start"               
-               Invoke-Command -ComputerName $ComputerName -ArgumentList $userinput -ScriptBlock{param($userinput) Start-Service -DisplayName $userinput}
+               Invoke-Command -ComputerName $ComputerName -ArgumentList $userinput -ScriptBlock{
+                param($userinput) Start-Service -DisplayName $userinput}
+
+
                 }
         ElseIf($userinput  -EQ 4){
                
                $userinput = Read-Host "What service are you looking for"
-               Invoke-Command -ComputerName $ComputerName -Argumentlist $userinput -ScriptBlock{param($userinput) Get-Service -DisplayName "*$userinput*"}
+               Invoke-Command -ComputerName $ComputerName -Argumentlist $userinput -ScriptBlock{
+                param($userinput) Get-Service -DisplayName "*$userinput*"}
+
+
                }
         ElseIf($userinput -EQ 0){$loop = $false}
 

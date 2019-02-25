@@ -1,37 +1,10 @@
-do{
+$a = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "& C:\MachineManager\TestingFile.ps1" 
 
+$t = New-ScheduledTaskTrigger -once -at (Get-Date).AddSeconds(2) -RepetitionDuration (New-TimeSpan -Days 1) -RepetitionInterval (New-TimeSpan -Minutes 1)
 
-$previousX = $X
+$p = New-ScheduledTaskPrincipal -UserId "$env:USERNAME" -RunLevel Highest
 
-$previousY = $y
+$s = New-ScheduledTaskSettingsSet -WakeToRun -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 
-
-$X = [System.Windows.Forms.Cursor]::Position.X
-$Y = [System.Windows.Forms.Cursor]::Position.Y
-
-
-
-
-$newX = get-random -Minimum ($x-1) -Maximum ($x+1)
-$newY = get-random -Minimum ($y-1) -Maximum ($y+1)
-
-
-
-
-
-if(($previousX -lt $X+1) -or ($previousX -gt $X-1)){Write-Output "doing nothing"}
-else{
-
-[System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($newX, $newY)
-
-
-}
-
-
-
-
-}
-while($true)
-
-
+Register-ScheduledTask -TaskName "newtesttask" -Action $a -Trigger $t -Principal $p -Settings $s -Description "checking thinga majigs" -Force
 

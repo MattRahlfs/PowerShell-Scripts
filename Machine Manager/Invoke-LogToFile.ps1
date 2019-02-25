@@ -1,12 +1,17 @@
 ﻿
 
-param($Path = "c:\Log-ToFile.txt", $Content = "")
+param(
 
-$timestamp = Get-Date -UFormat "%m/%d/%Y %T`n"
+ $Path = "c:\Log-ToFile.txt",
 
-Write-Output "### $timestamp" | Out-File -Append -FilePath "$Path" 
+ $Content = ""
+ 
+ )
+
+
+
+Write-Output "### $(Get-Date -UFormat '%m/%d/%Y %T')`n`n" | Out-File -Append -FilePath "$Path"
 
 $Content | Out-File -Append -FilePath "$Path"
 
 Write-Output "################################################ "| Out-File -Append -FilePath "$Path"
-

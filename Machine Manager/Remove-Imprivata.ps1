@@ -16,11 +16,11 @@
 
 Param (
 [Parameter(Mandatory=$true)]
-[string[]]$ComputerName,
+[string]$ComputerName,
 
 [Parameter(Mandatory=$true)]
 [ValidateSet('Appstation', 'Workstation')]
-[string[]]$Type
+[string]$Type
 
 )
 
