@@ -48,15 +48,14 @@ Write-Host -ForegroundColor Green "`n*******"
 
 function clipboard{
 
-
-$serialNum = ($serialNum = -split (Get-Clipboard)).Substring(1)
-
 Write-Host -ForegroundColor Green "`n*******`n"
+
+foreach ($serialNum in -split (get-clipboard)){
+$serialNum = $serialNum.Substring(1)
 $serialNum
+}
+
 Write-Host -ForegroundColor Green "`n*******"
-
-Set-Clipboard $serialNum
-
 
 }
 

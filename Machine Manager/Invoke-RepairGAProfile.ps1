@@ -22,7 +22,7 @@ If (Test-Connection -ComputerName $compname -Count 1 -ErrorAction Stop){
         
                     
 
-       If (& "$PSScriptRoot\itmo.ps1" $compname){
+       If (& "$PSScriptRoot\Invoke-ITMO.ps1" $compname){
 
        Write-Output "changing $username to $username.old"
 

@@ -46,6 +46,10 @@ $hashtable= @{
 '23' = "$PSSCriptRoot\Invoke-GPUpdate.ps1"
 '24' = "$PSSCriptRoot\Invoke-PSS.ps1"
 '25' = "$PSSCriptRoot\Invoke-PowerOff.ps1"
+'26' = "$PSSCriptRoot\Get-UserHistory.ps1"
+'27' = "$PSSCriptRoot\Invoke-SCCMRemote.ps1"
+'28' = "$PSSCriptRoot\Invoke-ExplorerToPCC.ps1"
+'29' = "$PSSCriptRoot\Invoke-AllowCCMRemote.ps1"
 
 
 
@@ -86,6 +90,10 @@ While ($true) {
        23. GPUPDATE
        24. Enter PSSESSION
        25. Power Off computer
+       26. Get User History
+       27. SCCM Remote
+       28. Open Explorer to PC
+       29. Allow CCM Remote
        C. Change Active Computer
        0. EXIT
        "

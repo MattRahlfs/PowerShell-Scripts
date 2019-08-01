@@ -9,10 +9,6 @@
 )
 
 
-
-
-
-
 if ($ObjectType -ne 'User'){Get-ADComputer -Identity $Name –Properties MemberOf | Select-Object -ExpandProperty MemberOf | 
 Get-ADGroup -Properties name }
 
