@@ -50,7 +50,10 @@ $hashtable= @{
 '27' = "$PSSCriptRoot\Invoke-SCCMRemote.ps1"
 '28' = "$PSSCriptRoot\Invoke-ExplorerToPCC.ps1"
 '29' = "$PSSCriptRoot\Invoke-AllowCCMRemote.ps1"
-
+'30' = "$PSSCriptRoot\Invoke-ExplorertoMA.ps1"
+'31' = "$PSSCriptRoot\Invoke-StopCCMViewer.ps1"
+'32' = "$PSSCriptRoot\Get-OnlineAlert.ps1"
+'33' = "$PSSCriptRoot\Get-CCMServiceAlert.ps1"
 
 
 }
@@ -94,6 +97,10 @@ While ($true) {
        27. SCCM Remote
        28. Open Explorer to PC
        29. Allow CCM Remote
+       30. Explorer to Manual Apps
+       31. Kill CCM Viewer
+       32. Wait until machine is online - 5 minutes
+       33. Wait Until Onine and CCM Remote - 5 minutes
        C. Change Active Computer
        0. EXIT
        "

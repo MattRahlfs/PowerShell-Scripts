@@ -166,5 +166,5 @@ Remove-PSSession -Name $ComputerName
 
 
 }
-Else {Write-Host "at least one of the Variables is null, you need to specify a computer to check and a username to send the email reimder to"}
+Else {Write-Host "at least one of the Variables is null, you need to specify a computer to check and a username to send the email reminder to"}
 

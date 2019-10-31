@@ -1,0 +1,1 @@
+﻿Get-Process | where name -like "cmrcviewer" | Stop-Process -force

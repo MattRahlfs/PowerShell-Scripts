@@ -1,6 +1,8 @@
-param($computername)
+param($message)
 
-function display_Form($computername){
+function display_Form($message){
+
+
 
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -11,7 +13,7 @@ $Form.Text = "CCM Service Alert"
 
 
 $Label = New-Object System.Windows.Forms.Label
-$Label.Text = "$ComputerName is now online and the CCM Remote service is now running."
+$Label.Text = "$message"
 $Font = New-Object System.Drawing.Font("Arial",20,[System.Drawing.FontStyle]::Bold)
 $Form.Font = $Font
 $Label.ForeColor = "green"
@@ -26,7 +28,10 @@ $Form.MinimizeBox = $False
 $Form.MaximizeBox = $False
 
 $Form.StartPosition = "CenterScreen"
+$Form.Topmost = $True
 $Form.ShowDialog() 
 
 }
 
+
+display_Form($message)
