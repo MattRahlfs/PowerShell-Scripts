@@ -54,6 +54,7 @@ $hashtable= @{
 '31' = "$PSSCriptRoot\Invoke-StopCCMViewer.ps1"
 '32' = "$PSSCriptRoot\Get-OnlineAlert.ps1"
 '33' = "$PSSCriptRoot\Get-CCMServiceAlert.ps1"
+'34' = "$PSSCriptRoot\Set-MMBG.ps1"
 
 
 }
@@ -100,7 +101,8 @@ While ($true) {
        30. Explorer to Manual Apps
        31. Kill CCM Viewer
        32. Wait until machine is online - 5 minutes
-       33. Wait Until Onine and CCM Remote - 5 minutes
+       33. Wait Until Online and CCM Remote - 5 minutes
+       34. Change background - WIN10 Project
        C. Change Active Computer
        0. EXIT
        "

@@ -1,12 +1,12 @@
 ﻿param(
 
 [string[]]$ComputerName,
-[string]$EXEpath = 'C:\MachineManager\EXE to copy\OptiFlex_03.lnk'
+[string]$EXEpath
 
 )
 
 
-#$ICUMonitorPath = "C:\Program Files (x86)\Epic\v8.3\Monitor\ICUMonitor.exe"
+
 $StartupFolder = "ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"
 
 

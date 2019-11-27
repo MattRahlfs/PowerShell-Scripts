@@ -10,7 +10,11 @@ param(
 
 
 
-Write-Output "### $(Get-Date -UFormat '%m/%d/%Y %T')`n`n" | Out-File -Append -FilePath "$Path"
+Write-Output "
+~ ~ ~ ~ ~ ~ ~ $(Get-Date -UFormat '%m/%d/%Y %T') ~ ~ ~ ~ ~ ~ ~ 
+" | Out-File -Append -FilePath "$Path"
+
+
 
 $Content | Out-File -Append -FilePath "$Path"
 
